@@ -22,8 +22,9 @@ void draw(){
   int maxI = 2450;
   for(int i = 0; i < maxI; i++){
     radius = i*10;
-    fill(radius%255);
-    drawCircleAtAngle(new PVector(1024/2.0, 768/2.0), 10, radius, getAngle(distance, radius));
+    float angle = getAngle(distance, radius);
+    fill(radius%255, angle*PI/180t);
+    drawCircleAtAngle(new PVector(1024/2.0, 768/2.0), 10, radius, angle);
   }
 }
 
