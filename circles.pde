@@ -5,7 +5,7 @@ void setup(){
 }
 int angle = 0 ;
 
-void drawCircleAtAngle(PVector center, int circleSize, int radius, float angle){
+void drawCircleAtAngle(PVector center, float circleSize, float radius, float angle){
   //PVector posNorm = center.fromAngle(,)().normalize();
   //float x = posNorm.x * cos(angle)*radius + center.x; //<>//
   //float y = posNorm.y * sin(angle)*radius + center.y;
@@ -18,13 +18,14 @@ void drawCircleAtAngle(PVector center, int circleSize, int radius, float angle){
 void draw(){
   //clear();
   float distance = frameCount/10.0;
-  int radius = 10;
+  float circleSize = 10;
   int maxI = 2450;
   for(int i = 0; i < maxI; i++){
-    radius = i*10;
-    float angle = getAngle(distance, radius);
-    fill(radius%255, angle*PI/180t);
-    drawCircleAtAngle(new PVector(1024/2.0, 768/2.0), 10, radius, angle);
+    float localRadius = i*circleSize;
+    float angle = getAngle(distance, localRadius);
+    println(angle*180.0/PI);
+    fill(localRadius%255, angle*PI/180.0);
+    drawCircleAtAngle(new PVector(displayWidth/2.0, displayHeight/2.0), 10, localRadius, angle);
   }
 }
 
