@@ -1,7 +1,9 @@
 void setup(){
-    frameRate(40);
+    frameRate(100);
     //size(1024, 768);
     fullScreen();
+    blendMode(LIGHTEST  );
+    clear();
 }
 int angle = 0 ;
 
@@ -17,14 +19,16 @@ void drawCircleAtAngle(PVector center, float circleSize, float radius, float ang
 
 void draw(){
   //clear();
-  float distance = frameCount/10.0;
-  float circleSize = 10;
-  int maxI = 2450;
+  float distance = frameCount*30.0;
+  float circleSize = 4;
+  int maxI = 500;
   for(int i = 0; i < maxI; i++){
     float localRadius = i*circleSize;
-    float angle = getAngle(distance, localRadius);
+    float angle = (frameCount%2==0?1:1)* getAngle(distance/(log(distance)), localRadius);
     println(angle*180.0/PI);
-    fill(localRadius%255, angle*PI/180.0);
+    fill(255, (angle*180.0/PI)%255, localRadius%255);
+    stroke(0, i%255, 100);
+    //noStroke();
     drawCircleAtAngle(new PVector(displayWidth/2.0, displayHeight/2.0), 10, localRadius, angle);
   }
 }
